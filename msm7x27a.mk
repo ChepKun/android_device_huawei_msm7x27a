@@ -110,7 +110,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
-    debug.sf.hw=1 \
+    debug.sf.hw=0 \
     debug.composition.type=dyn \
     debug.hwc.dynThreshold=1.9 \
     ro.bq.gpu_to_cpu_unsupported=1 \
@@ -134,7 +134,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # FM Radio
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.fm.analogpath.supported=false \
+    ro.fm.analogpath.supported=true \
     ro.fm.transmitter=false \
     ro.fm.mulinst.recording.support=false
 
@@ -159,7 +159,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.checkjni=0 \
-#    dalvik.vm.debug.alloc=0
+    dalvik.vm.debug.alloc=0
     
 # Tweaks
 PRODUCT_PROPERTY_OVERRIDES += \

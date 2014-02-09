@@ -46,6 +46,7 @@
                 android:removable="true"
                 android:allowMassStorage="true" />
 
+    <!-- usb host -->
     <storage android:mountPoint="/storage/usbdisk0"
                  android:storageDescription="@string/storage_usb"
                  android:primary="false"

@@ -130,11 +130,10 @@ set_light_buttons(struct light_device_t* dev,
         struct light_state_t const* state)
 {
     int err = 0;
-    int brightness = rgb_to_brightness(state);
     int on = is_lit(state);
     pthread_mutex_lock(&g_lock);
     g_buttons = on;
-    err = write_int(BUTTON_FILE, on?0:0);
+    err = write_int(BUTTON_FILE, on?g_backlight:0);
     pthread_mutex_unlock(&g_lock);
     return err;
 }

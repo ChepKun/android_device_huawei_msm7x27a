@@ -104,7 +104,7 @@
     <bool name="config_unplugTurnsOnScreen">true</bool>
 
     <!-- If this is true, the screen will fade off. -->
-    <bool name="config_animateScreenLights">false</bool>
+    <bool name="config_animateScreenLights">true</bool>
 
     <!-- Indicate whether the SD card is accessible without removing the battery. -->
     <bool name="config_batterySdCardAccessibility">true</bool>
@@ -157,12 +157,12 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessButtonBacklightValues">
-        <item>40</item>
-        <item>30</item>
         <item>20</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
+        <item>50</item>
+        <item>80</item>
+        <item>100</item>
+        <item>120</item>
+        <item>150</item>
     </integer-array>
 
     <!-- Array of output values for keyboard backlight corresponding to the LUX values
@@ -170,12 +170,12 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessKeyboardBacklightValues">
-        <item>40</item>
-        <item>30</item>
         <item>20</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
+        <item>50</item>
+        <item>80</item>
+        <item>100</item>
+        <item>120</item>
+        <item>150</item>
     </integer-array>
 
     <!-- Hardware 'face' keys present on the device, stored as a bit field.
@@ -193,8 +193,5 @@
 
     <!-- Is the device capable of hot swapping an UICC Card -->
     <bool name="config_hotswapCapable">true</bool>
-
-    <!--  Maximum number of supported users -->
-    <integer name="config_multiuserMaximumUsers">3</integer>
 
 </resources>

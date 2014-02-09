@@ -74,6 +74,9 @@ on boot
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
 
+    # create symlink for fb1 as HDMI
+    symlink /dev/graphics/fb1 /dev/graphics/hdmi
+
     # For bridgemgr daemon to inform the USB driver of the correct transport
     chown radio radio /sys/class/android_usb/f_rmnet_smd_sdio/transport
 
@@ -94,6 +97,14 @@ on boot
     write /proc/sys/net/ipv6/conf/rmnet_sdio5/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet_sdio6/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet_sdio7/accept_ra 2
+
+    # To prevent out of order acknowledgements from making
+    # connection tracking to treat them as not belonging to
+    # the connection they belong to.
+    # Otherwise, a weird issue happens in which some long
+    # connections on high-throughput links get dropped when
+    # an ack packet comes out of order
+    write /proc/sys/net/netfilter/nf_conntrack_tcp_be_liberal 1
 
     chmod 0664 /dev/light
     chmod 0664 /dev/proximity
@@ -249,18 +260,21 @@ service akm8975 /system/bin/akmd8975
     oneshot
 
 service ril-daemon1 /system/bin/rild -c 1
-    class late_start
+    class main
     socket rild1 stream 660 root radio
     socket rild-debug1 stream 660 radio system
     user root
     disabled
     group radio cache inet misc audio sdcard_rw qcom_oncrpc diag
 
-service post_boot /system/bin/sh /init.params.sh
-   class late_start
-   user root
-   disabled
-   oneshot
+on property:ro.multi.rild=true
+    start ril-daemon1
+
+service post_boot /system/bin/sh /init.huawei.sh
+    class late_start
+    user root
+    disabled
+    oneshot
 
 on property:init.svc.bootanim=stopped
-   start post_boot
+    start post_boot
