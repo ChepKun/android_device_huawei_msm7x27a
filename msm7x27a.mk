@@ -74,6 +74,11 @@ PRODUCT_PACKAGES += \
     hwmac \
     libnetcmdiface
 
+# FM
+PRODUCT_PACKAGES += \
+    libqcomfm_jni \
+    qcom.fmradio
+
 # Other
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory \
