@@ -26,11 +26,10 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-import init.device.rc
+import init.target.rc
 import init.huawei.usb.rc
 
 on early-init
-    write /sys/module/msm_fb/parameters/align_buffer 1
     mount debugfs debugfs /sys/kernel/debug
 
 on init
@@ -256,6 +255,13 @@ service qosmgrd /system/bin/qosmgr /system/etc/qosmgr_rules.xml
 
 service akm8975 /system/bin/akmd8975
     class main
+    disabled
+    oneshot
+
+service fm_dl /system/bin/sh /init.qcom.fm.sh
+    class late_start
+    user root
+    group system qcom_oncrpc
     disabled
     oneshot
 

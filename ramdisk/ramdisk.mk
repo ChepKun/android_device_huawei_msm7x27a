@@ -18,6 +18,7 @@ files := \
 	init.huawei.rc \
 	init.huawei.usb.rc \
 	ueventd.huawei.rc \
+        init.qcom.fm.sh \
 	init.huawei.sh
 
 PRODUCT_COPY_FILES += $(foreach file,$(files),\
