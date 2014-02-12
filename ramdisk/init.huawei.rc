@@ -29,28 +29,29 @@
 import init.target.rc
 import init.huawei.usb.rc
 
-on early-init
-    mount debugfs debugfs /sys/kernel/debug
-
 on init
     mkdir /cust
-
     mkdir /storage 0775 system sdcard_r
-    mkdir /storage/sdcard1 0000 system system
     mkdir /storage/sdcard0 0000 system system
+    mkdir /storage/sdcard1 0000 system system
     mkdir /storage/usbdisk0 0000 system system
 
-    export SECONDARY_STORAGE /storage/sdcard1
     export EXTERNAL_STORAGE /storage/sdcard0
+    export SECONDARY_STORAGE /storage/sdcard1
 
-    symlink /storage/sdcard1 /mnt/sdcard
-    symlink /storage/sdcard1 /sdcard
+    # For backwards compatibility
     symlink /storage/sdcard0 /mnt/internal_sd
     symlink /storage/sdcard0 /internal_sd
+    symlink /storage/sdcard1 /mnt/sdcard
+    symlink /storage/sdcard1 /sdcard
     symlink /storage/usbdisk0 /mnt/usbdisk
     symlink /storage/usbdisk0 /usbdisk
 
+    # Debug
+    mount debugfs debugfs /sys/kernel/debug
+
 on boot
+    # Bluetooth
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /proc/bluetooth/sleep/proto
@@ -72,6 +73,7 @@ on boot
     chown bluetooth bluetooth /dev/smd7
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
+    chown system system /sys/devices/platform/msm_hsusb/gadget/fixusb
 
     # create symlink for fb1 as HDMI
     symlink /dev/graphics/fb1 /dev/graphics/hdmi
@@ -133,13 +135,12 @@ on boot
     chmod 664 /dev/input/event1
     chmod 664 /dev/input/event2
 
-    chown system system /sys/devices/platform/msm_hsusb/gadget/fixusb
-
     chown radio system /sys/power/touch_event
     chown radio system /sys/power/touch_event_timer
     chmod 0660 /sys/power/touch_event
     chmod 0660 /sys/power/touch_event_timer
 
+    # Enable power-save
     write /sys/devices/platform/msm_sdcc.1/idle_timeout 10
     write /sys/module/pm2/modes/cpu0/standalone_power_collapse/idle_enabled 1
     write /sys/module/pm2/modes/cpu1/standalone_power_collapse/idle_enabled 1
@@ -147,6 +148,11 @@ on boot
     write /sys/module/pm2/modes/cpu1/standalone_power_collapse/suspend_enabled 1
     write /sys/module/pm2/modes/cpu0/power_collapse/suspend_enabled 1
     write /sys/module/pm2/modes/cpu0/power_collapse/idle_enabled 1
+
+# Services
+
+service netmgrd /system/bin/netmgrd
+    class main
 
 on emmc-fs
     # mount mmc partitions
@@ -178,9 +184,17 @@ on post-fs-data
     chown system system /sys/devices/platform/msm_sdcc.3/polling
     chown system system /sys/devices/platform/msm_sdcc.4/polling
 
+    chown system /sys/devices/platform/rs300000a7.65536/force_sync
+    chown system /sys/devices/platform/rs300000a7.65536/sync_sts
+    chown system /sys/devices/platform/rs300100a7.65536/force_sync
+    chown system /sys/devices/platform/rs300100a7.65536/sync_sts
+
     # Create directories for wiper services
     mkdir /data/wpstiles/ 0755 shell
     mkdir /data/wiper 0755 gps qcom_oncrpc
+
+    # Create directories for gpsone_daemon services
+    mkdir /data/misc/gpsone_d 0770 system system
 
     chown system system /sys/class/android_usb/android0/f_mass_storage/lun/file
     chmod 0660 /sys/class/android_usb/android0/f_mass_storage/lun/file
@@ -201,9 +215,6 @@ service hwmac /system/bin/hwmac
 
 service rmt_oeminfo /system/bin/rmt_oeminfo
     class core
-
-service netmgrd /system/bin/netmgrd
-    class main
 
 service oem_rpc_svc /system/bin/oem_rpc_svc
     class core
@@ -273,10 +284,7 @@ service ril-daemon1 /system/bin/rild -c 1
     disabled
     group radio cache inet misc audio sdcard_rw qcom_oncrpc diag
 
-on property:ro.multi.rild=true
-    start ril-daemon1
-
-service post_boot /system/bin/sh /init.huawei.sh
+service post_boot /system/bin/sh /init.huawei.post_boot.sh
     class late_start
     user root
     disabled

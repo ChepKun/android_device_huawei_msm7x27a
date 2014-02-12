@@ -120,7 +120,7 @@ TARGET_CUSTOM_WIFI 		:= ../../device/huawei/msm7x27a-common/hardware/wifi/wifi.c
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE 		:= 0x800000
-BOARD_CACHEIMAGE_PARTITION_SIZE 	:= 0xC000000
+BOARD_CACHEIMAGE_PARTITION_SIZE 	:= 201326592
 BOARD_RECOVERYIMAGE_PARTITION_SIZE 	:= 0x1400000
 BOARD_FLASH_BLOCK_SIZE 			:= 131072
 TARGET_USERIMAGES_USE_EXT4 		:= true
@@ -147,5 +147,5 @@ TW_FLASH_FROM_STORAGE 		 := true
 BOARD_USE_CUSTOM_RECOVERY_FONT	 := \"roboto_10x18.h\"
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TW_BRIGHTNESS_PATH 		 := /sys/devices/platform/msm_fb.589824/leds/lcd-backlight/brightness
-TW_BUTTONS_BRIGHTNESS_PATH 	 := /sys/devices/platform/msm_fb.589824/leds/lcd-backlight/subsysten/button-backlight/brightness
+TW_BUTTONS_BRIGHTNESS_PATH 	 := /sys/devices/platform/msm_fb.589824/leds/lcd-backlight/subsystem/button-backlight/brightness
 TW_MAX_BRIGHTNESS 		 := 255
