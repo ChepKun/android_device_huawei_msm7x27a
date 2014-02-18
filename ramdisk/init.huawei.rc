@@ -163,9 +163,6 @@ on boot
     write /proc/sys/vm/page-cluster 0
 
 on emmc-fs
-    # activate swaps
-    swapon_all /swap.huawei
-
     # mount mmc partitions
     mount_all /fstab.huawei
 

@@ -123,7 +123,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.max.fling_velocity=4000 \
     ro.opengles.version=131072 \
     ro.sf.lcd_density=240 \
-    ro.opengles.surface.rgb565=true
+    ro.opengles.surface.rgb565=true \
+    persist.sys.strictmode.disable=true
+
 
 # Memory
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -150,8 +152,27 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ril.subscription.types=NV,RUIM \
     rild.libpath=/system/lib/libril-qc-1.so \
     rild.libargs=-d/dev/smd0 \
+    persist.rild.nitz_plmn= \
+    persist.rild.nitz_long_ons_0= \
+    persist.rild.nitz_long_ons_1= \
+    persist.rild.nitz_long_ons_2= \
+    persist.rild.nitz_long_ons_3= \
+    persist.rild.nitz_short_ons_0= \
+    persist.rild.nitz_short_ons_1= \
+    persist.rild.nitz_short_ons_2= \
+    persist.rild.nitz_short_ons_3= \
     ro.telephony.call_ring.delay=1000 \
     ro.telephony.call_ring.multiple=false \
+    ro.ril.disable.power.collapse=0 \
+    ro.ril.enable.amr.wideband=1 \
+    ro.ril.hep=0 \
+    ro.ril.hsxpa=2 \
+    ro.ril.gprsclass=12 \
+    ro.ril.enable.dtm=1 \
+    ro.ril.hsdpa.category=8 \
+    ro.ril.enable.a53=1 \
+    ro.ril.enable.3g.prefix=1 \
+    ro.ril.hsupa.category=6 \
     DEVICE_PROVISIONED=1
 
 # Storage
@@ -171,7 +192,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     
 # Tweaks
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.kernel.android.checkjni=0
+    ro.kernel.android.checkjni=0 \
+    pm.sleep_mode=1
 
 # Legacy
 PRODUCT_PROPERTY_OVERRIDES += \

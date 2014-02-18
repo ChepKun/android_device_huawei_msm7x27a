@@ -18,7 +18,6 @@ files := \
 	init.huawei.rc \
 	init.huawei.usb.rc \
 	ueventd.huawei.rc \
-	swap.huawei \
 	init.huawei.fm.sh
 
 PRODUCT_COPY_FILES += $(foreach file,$(files),\
