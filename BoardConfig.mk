@@ -27,7 +27,6 @@ TARGET_CPU_VARIANT 		:= cortex-a5
 TARGET_BOARD_PLATFORM 		:= msm7x27a
 TARGET_BOARD_PLATFORM_GPU 	:= qcom-adreno200
 TARGET_USES_ION 		:= true
-BOARD_WANTS_EMMC_BOOT 		:= true
 
 # Qualcomm hardware
 BOARD_USES_QCOM_HARDWARE 	:= true
@@ -45,15 +44,18 @@ TARGET_ARCH_LOWMEM := true
 BOARD_KERNEL_BASE 	:= 0x00200000
 BOARD_KERNEL_CMDLINE 	:= androidboot.hardware=huawei androidboot.selinux=permissive
 BOARD_PAGE_SIZE 	:= 2048
-TARGET_KERNEL_SOURCE 	:= kernel/huawei/msm7x27-common
+TARGET_KERNEL_SOURCE 	:= kernel/huawei/msm7x27a
 
 # Compiler flags
 TARGET_GLOBAL_CFLAGS 	+= -mfloat-abi=softfp -mfpu=neon -mtune=cortex-a5
 TARGET_GLOBAL_CPPFLAGS 	+= -mfloat-abi=softfp -mfpu=neon -mtune=cortex-a5
 
 # Include
-TARGET_SPECIFIC_HEADER_PATH 	:= device/huawei/msm7x27a-common/include/kernel
-BOARD_HARDWARE_CLASS 		:= device/huawei/msm7x27a-common/include/android/hardware
+TARGET_SPECIFIC_HEADER_PATH 	:= device/huawei/msm7x27a/include/kernel
+BOARD_HARDWARE_CLASS 		:= device/huawei/msm7x27a/include/android/hardware
+
+# Storage
+BOARD_WANTS_EMMC_BOOT := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -64,7 +66,7 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION 	:= 50000
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE 		:= $(TARGET_BOARD_PLATFORM)
 
 # Graphics
-BOARD_EGL_CFG 				:= device/huawei/msm7x27a-common/configs/egl.cfg
+BOARD_EGL_CFG 				:= device/huawei/msm7x27a/configs/egl.cfg
 USE_OPENGL_RENDERER 			:= true
 BOARD_ADRENO_DECIDE_TEXTURE_TARGET 	:= true
 TARGET_QCOM_DISPLAY_VARIANT 		:= legacy
@@ -74,6 +76,7 @@ TARGET_USES_QCOM_BSP 		:= true
 TARGET_QCOM_LEGACY_OMX 		:= true
 TARGET_QCOM_MEDIA_VARIANT 	:= legacy
 COMMON_GLOBAL_CFLAGS 		+= -DQCOM_BSP
+COMMON_GLOBAL_CFLAGS 		+= -DQCOM_LEGACY_OMX
 
 # Camera
 COMMON_GLOBAL_CFLAGS += -DMR0_CAMERA_BLOB
@@ -89,7 +92,7 @@ COMMON_GLOBAL_CFLAGS 	+= -DQCOM_FM_ENABLED
 TARGET_PROVIDES_LIBLIGHTS := true
 
 # SELinux
-BOARD_SEPOLICY_DIRS += device/huawei/msm7x27a-common/sepolicy
+BOARD_SEPOLICY_DIRS += device/huawei/msm7x27a/sepolicy
 
 BOARD_SEPOLICY_UNION += \
     file_contexts \
@@ -116,7 +119,7 @@ TARGET_USE_CUSTOM_SECOND_LUN_NUM 	:= 1
 BOARD_WPA_SUPPLICANT_DRIVER 	:= NL80211
 BOARD_HOSTAPD_DRIVER 		:= NL80211
 WPA_SUPPLICANT_VERSION 		:= VER_0_8_X
-TARGET_CUSTOM_WIFI 		:= ../../device/huawei/msm7x27a-common/hardware/wifi/wifi.c
+TARGET_CUSTOM_WIFI 		:= ../../device/huawei/msm7x27a/hardware/wifi/wifi.c
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE 		:= 0x800000
@@ -126,7 +129,7 @@ BOARD_FLASH_BLOCK_SIZE 			:= 131072
 TARGET_USERIMAGES_USE_EXT4 		:= true
 
 # Recovery TWRP
-TARGET_RECOVERY_INITRC 		 := device/huawei/msm7x27a-common/recovery/init.rc
+TARGET_RECOVERY_INITRC 		 := device/huawei/msm7x27a/recovery/init.rc
 TARGET_RECOVERY_PIXEL_FORMAT 	 := "RGBX_8888"
 BOARD_HAS_NO_SELECT_BUTTON 	 := true
 BOARD_HAS_LARGE_FILESYSTEM 	 := true

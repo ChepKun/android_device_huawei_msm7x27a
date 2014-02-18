@@ -17,6 +17,7 @@
 files := \
 	dhcpcd/dhcpcd.conf \
 	wifi/wpa_supplicant.conf \
+	dbus.conf \
 	audio_policy.conf \
 	media_codecs.xml \
 	media_profiles.xml \

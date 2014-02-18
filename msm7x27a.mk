@@ -22,19 +22,19 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
 # Include configs
-$(call inherit-product, device/huawei/msm7x27a-common/configs/configs.mk)
+$(call inherit-product, device/huawei/msm7x27a/configs/configs.mk)
 
 # Include input
-$(call inherit-product, device/huawei/msm7x27a-common/input/input.mk)
+$(call inherit-product, device/huawei/msm7x27a/input/input.mk)
 
 # Include ramdisk
-$(call inherit-product, device/huawei/msm7x27a-common/ramdisk/ramdisk.mk)
+$(call inherit-product, device/huawei/msm7x27a/ramdisk/ramdisk.mk)
 
 # Include recovery
-$(call inherit-product, device/huawei/msm7x27a-common/recovery/recovery.mk)
+$(call inherit-product, device/huawei/msm7x27a/recovery/recovery.mk)
 
 # Overlays
-DEVICE_PACKAGE_OVERLAYS += device/huawei/msm7x27a-common/overlay
+DEVICE_PACKAGE_OVERLAYS += device/huawei/msm7x27a/overlay
 
 # Tags
 PRODUCT_TAGS += dalvik.gc.type-precise
@@ -82,9 +82,10 @@ PRODUCT_PACKAGES += \
 # Other
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory \
-    dexpreopt \
     make_ext4fs \
-    setup_fs 
+    setup_fs
+
+#e2fsck
 
 # Features available on this device.
 PRODUCT_COPY_FILES += \
@@ -115,13 +116,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
-    debug.sf.hw=1 \
+    debug.sf.hw=0 \
     debug.composition.type=dyn \
     debug.hwc.dynThreshold=1.9 \
     ro.bq.gpu_to_cpu_unsupported=1 \
     ro.max.fling_velocity=4000 \
     ro.opengles.version=131072 \
-    ro.sf.lcd_density=240
+    ro.sf.lcd_density=240 \
+    ro.opengles.surface.rgb565=true
 
 # Memory
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -149,7 +151,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     rild.libpath=/system/lib/libril-qc-1.so \
     rild.libargs=-d/dev/smd0 \
     ro.telephony.call_ring.delay=1000 \
-    ro.telephony.call_ring.multiple=false
+    ro.telephony.call_ring.multiple=false \
+    DEVICE_PROVISIONED=1
 
 # Storage
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -168,11 +171,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     
 # Tweaks
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.kernel.android.checkjni=0 \
-    pm.sleep_mode=1
+    ro.kernel.android.checkjni=0
+
+# Legacy
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.electronbeam.legacy=1
 
 # Debug
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.service.adb.enable=1
 
-$(call inherit-product, vendor/huawei/msm7x27a-common/vendor-blobs-common.mk)
+$(call inherit-product, vendor/huawei/msm7x27a/vendor-blobs.mk)
