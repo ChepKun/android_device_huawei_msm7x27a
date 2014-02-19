@@ -161,6 +161,7 @@ on boot
 
     # Kernel tuning
     write /proc/sys/vm/page-cluster 0
+    write /proc/sys/vm/dirty_expire_centisecs 1500
 
 on emmc-fs
     # mount mmc partitions
@@ -266,12 +267,13 @@ service iprenew_p2p /system/bin/dhcpcd -n p2p
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
     user camera
-    group camera system inet input
+    group camera system inet input audio
 
 service qosmgrd /system/bin/qosmgr /system/etc/qosmgr_rules.xml
     class late_start
     user system
     group system
+    disabled
 
 service akm8975 /system/bin/akmd8975
     class main

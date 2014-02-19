@@ -116,7 +116,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
-    debug.sf.hw=0 \
+    debug.sf.hw=1 \
     debug.composition.type=dyn \
     debug.hwc.dynThreshold=1.9 \
     ro.bq.gpu_to_cpu_unsupported=1 \
@@ -138,8 +138,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     com.qc.hardware=true \
     dev.pm.dyn_sample_period=700000 \
     dev.pm.dyn_samplingrate=1 \
-    ro.vendor.extension_library=/system/lib/libqc-opt.so \
-    persist.thermal.monitor=true
+    ro.vendor.extension_library=/system/lib/libqc-opt.so
 
 # FM Radio
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -152,19 +151,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ril.subscription.types=NV,RUIM \
     rild.libpath=/system/lib/libril-qc-1.so \
     rild.libargs=-d/dev/smd0 \
-    persist.rild.nitz_plmn= \
-    persist.rild.nitz_long_ons_0= \
-    persist.rild.nitz_long_ons_1= \
-    persist.rild.nitz_long_ons_2= \
-    persist.rild.nitz_long_ons_3= \
-    persist.rild.nitz_short_ons_0= \
-    persist.rild.nitz_short_ons_1= \
-    persist.rild.nitz_short_ons_2= \
-    persist.rild.nitz_short_ons_3= \
     ro.telephony.call_ring.delay=1000 \
     ro.telephony.call_ring.multiple=false \
     ro.ril.disable.power.collapse=0 \
-    ro.ril.enable.amr.wideband=1 \
     ro.ril.hep=0 \
     ro.ril.hsxpa=2 \
     ro.ril.gprsclass=12 \

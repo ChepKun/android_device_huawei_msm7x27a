@@ -36,6 +36,7 @@ COMMON_GLOBAL_CFLAGS 		+= -DQCOM_HARDWARE
 
 # Optimizations
 ARCH_ARM_HAVE_TLS_REGISTER := true
+TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
 # Dalvik
 TARGET_ARCH_LOWMEM := true
@@ -47,8 +48,8 @@ BOARD_PAGE_SIZE 	:= 2048
 TARGET_KERNEL_SOURCE 	:= kernel/huawei/msm7x27a
 
 # Compiler flags
-TARGET_GLOBAL_CFLAGS 	+= -mfloat-abi=softfp -mfpu=neon -mtune=cortex-a5
-TARGET_GLOBAL_CPPFLAGS 	+= -mfloat-abi=softfp -mfpu=neon -mtune=cortex-a5
+TARGET_GLOBAL_CFLAGS   += -mtune=cortex-a5 -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a5 -mfpu=neon -mfloat-abi=softfp
 
 # Include
 TARGET_SPECIFIC_HEADER_PATH 	:= device/huawei/msm7x27a/include/kernel
@@ -70,6 +71,7 @@ BOARD_EGL_CFG 				:= device/huawei/msm7x27a/configs/egl.cfg
 USE_OPENGL_RENDERER 			:= true
 BOARD_ADRENO_DECIDE_TEXTURE_TARGET 	:= true
 TARGET_QCOM_DISPLAY_VARIANT 		:= legacy
+COMMON_GLOBAL_CFLAGS 			+= -DREFRESH_RATE=72
 
 # Media
 TARGET_USES_QCOM_BSP 		:= true
