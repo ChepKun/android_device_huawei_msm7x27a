@@ -124,7 +124,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072 \
     ro.sf.lcd_density=240 \
     ro.opengles.surface.rgb565=true \
-    persist.sys.strictmode.disable=true
+    persist.sys.strictmode.disable=true \
+    windowsmgr.max_events_per_sec=150
 
 
 # Memory
