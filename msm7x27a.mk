@@ -65,10 +65,6 @@ PRODUCT_PACKAGES += \
     gps.msm7x27a \
     libloc_api-rpc
 
-# Lights
-PRODUCT_PACKAGES += \
-    lights.msm7x27a
-
 # Network
 PRODUCT_PACKAGES += \
     hwmac \
@@ -84,8 +80,6 @@ PRODUCT_PACKAGES += \
     com.android.future.usb.accessory \
     make_ext4fs \
     setup_fs
-
-#e2fsck
 
 # Features available on this device.
 PRODUCT_COPY_FILES += \

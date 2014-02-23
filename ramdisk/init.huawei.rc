@@ -274,12 +274,6 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     user camera
     group camera system inet input audio
 
-service qosmgrd /system/bin/qosmgr /system/etc/qosmgr_rules.xml
-    class late_start
-    user system
-    group system
-    disabled
-
 service akm8975 /system/bin/akmd8975
     class main
     disabled

@@ -20,8 +20,7 @@ files := \
 	dbus.conf \
 	audio_policy.conf \
 	media_codecs.xml \
-	media_profiles.xml \
-	qosmgr_rules.xml
+	media_profiles.xml
 
 PRODUCT_COPY_FILES += $(foreach file,$(files),\
         $(LOCAL_PATH)/$(file):system/etc/$(file))
