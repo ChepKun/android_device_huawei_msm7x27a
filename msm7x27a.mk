@@ -148,7 +148,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     rild.libargs=-d/dev/smd0 \
     ro.telephony.call_ring.delay=1000 \
     ro.telephony.call_ring.multiple=false \
-    ro.ril.disable.power.collapse=0 \
     ro.ril.hep=0 \
     ro.ril.hsxpa=2 \
     ro.ril.gprsclass=12 \
@@ -176,8 +175,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     
 # Tweaks
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.kernel.android.checkjni=0 \
-    pm.sleep_mode=1
+    ro.kernel.android.checkjni=0
 
 # Legacy
 PRODUCT_PROPERTY_OVERRIDES += \
